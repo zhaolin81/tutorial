@@ -1,7 +1,8 @@
 package com.zhaolin81.spring.framework.configproperties.annotation.appconfig;
 
-import com.zhaolin81.spring.framework.configproperties.annotation.properties.AppConfigProperties;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zhaolin81.spring.framework.configproperties.annotation.bean.IBean;
+import com.zhaolin81.spring.framework.configproperties.annotation.bean.impl.AppBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,12 +13,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties()
 public class AppConfig {
-    @Autowired
-    public AppConfigProperties properties;
+//    @Autowired
+//    public AppConfigProperties properties;
 
     @Bean
-    public
-    AppConfigProperties appConfigProperties(){
-        return new AppConfigProperties();
+    @ConfigurationProperties(prefix = "test",locations = "classpath:test.properties")
+    public IBean bean(){
+        return new AppBean();
     }
 }
